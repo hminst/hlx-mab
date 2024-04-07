@@ -26,6 +26,15 @@
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.29.1",
     "stylelint": "16.2.1",
-    "stylelint-config-standard": "36.0.0"
+    "stylelint-config-standard": "36.0.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "node-json2html": "^3.0.0",
+    "path": "^0.12.7",
+    "path-browserify": "^1.0.1",
+    "vm": "^0.1.0"
   }
 }
