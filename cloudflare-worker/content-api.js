@@ -48,7 +48,7 @@ const handleRequest = async (request, env, ctx) => {
   let resp = await fetch(req, {
     cf: {
       // cf doesn't cache html by default: need to override the default behavior
-      cacheEverything: true,
+      cacheEverything: false,
     },
   });
 
@@ -62,16 +62,17 @@ const handleRequest = async (request, env, ctx) => {
   }
   resp.headers.delete('age');
   resp.headers.delete('x-robots-tag');
-  return new HTMLRewriter().on('div ', new LogHandler()).transform(resp);
+  return new HTMLRewriter().on('.dynamic-menu', new LogHandler()).transform(resp);
 };
 
 class LogHandler {
   async element(element) {
 
-    loadData('https://hlx.wefixyourproject.com/dynamic-menu-api').then((data) => {
+    await loadData('https://dynamic-menu-api.h-minst.workers.dev').then((data) => {
       for (var key in data) {
-        
-        let elem = `<div class="${key}">${data[key]}</div>`
+        let item = 
+        let elem = `<div class="${key}">${JSON.stringify(data[key])}</div>`
+        console.log(elem)
         element.append(elem, {html:true})
       }
     })
