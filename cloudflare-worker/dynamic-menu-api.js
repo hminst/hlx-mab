@@ -2,7 +2,7 @@
 export default {
     async fetch(request, env, ctx) {
 
-        url.hostname = env.ORIGIN_HOSTNAME;
+      url.hostname = env.ORIGIN_HOSTNAME;
       const url = request.headers.get("Referer");
   
       const req = new Request(url, request);
@@ -12,15 +12,27 @@ export default {
   
       const cfCacheTtl = 60;
   
-      let resp = await fetch(req, {
-        cf: {
-          cacheTtl: cfCacheTtl,
-          // cf doesn't cache html by default: need to override the default behavior if we would want to
-          cacheEverything: true,
-        },
-      });
+      loadData().then((data)=>{
+        let html = '';
+for (const key in tata) {
+  if (!Array.isArray(json[key])) {
+    html += '<div>' + json[key] + '</div>'
+  } else {
+    html += '<div>';
+    for (const item of json[key]) {
+      for (const key2 in item) {
+        html += '<p>' + item[key2] + '</p>'
+      }
+
+    }
+    html += '</div>';
+
+  }
+
+}
+      })
   
-      console.log("" + JSON.stringify(request.headers));
+      
   
       resp = new Response(resp.body, resp);
       resp.headers.delete("age");
@@ -29,3 +41,9 @@ export default {
       resp.headers.set("Cache-Control", " max-age=120");
     },
   };
+
+  export async function loadData(apiUrl) {
+    const response = await fetch(apiUrl)
+    const data = await response.json()
+    return data;
+  }

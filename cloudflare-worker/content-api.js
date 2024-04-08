@@ -69,8 +69,7 @@ class LogHandler {
   async element(element) {
 
     await loadData('https://dynamic-menu-api.h-minst.workers.dev').then((data) => {
-      for (var key in data) {
-        let item = 
+    for (var key in data) {
         let elem = `<div class="${key}">${JSON.stringify(data[key])}</div>`
         console.log(elem)
         element.append(elem, {html:true})
