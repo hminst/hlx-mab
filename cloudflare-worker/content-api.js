@@ -51,6 +51,8 @@ const handleRequest = async (request, env, ctx) => {
       cacheEverything: true,
     },
   });
+
+
   resp = new Response(resp.body, resp);
   if (resp.status === 301 && strippedQS) {
     const location = resp.headers.get('location');
@@ -60,8 +62,29 @@ const handleRequest = async (request, env, ctx) => {
   }
   resp.headers.delete('age');
   resp.headers.delete('x-robots-tag');
-  return resp;
+  return new HTMLRewriter().on('div ', new LogHandler()).transform(resp);
 };
+
+class LogHandler {
+  async element(element) {
+
+    loadData('https://hlx.wefixyourproject.com/dynamic-menu-api').then((data) => {
+      for (var key in data) {
+        
+        let elem = `<div class="${key}">${data[key]}</div>`
+        element.append(elem, {html:true})
+      }
+    })
+    console.log(JSON.stringify(element))
+  }
+}
+
+export async function loadData(apiUrl) {
+  const response = await fetch(apiUrl)
+  const data = await response.json()
+  return data;
+}
+
 
 export default {
   fetch: handleRequest,
