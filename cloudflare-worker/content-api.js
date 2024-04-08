@@ -10,21 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-'use strict';
-
 const handleRequest = async (request, env, ctx) => {
   const url = new URL(request.url);
   if (url.port) {
     // Cloudflare opens a couple more ports than 443, so we redirect visitors
-    // to the default port to avoid confusion. 
+    // to the default port to avoid confusion.
     // https://developers.cloudflare.com/fundamentals/reference/network-ports/#network-ports-compatible-with-cloudflares-proxy
     const redirectTo = new URL(request.url);
     redirectTo.port = '';
-    return new Response("Moved permanently to " + redirectTo.href, {
+    return new Response(`Moved permanently to ${redirectTo.href}`, {
       status: 301,
       headers: {
-        location: redirectTo.href
-      }
+        location: redirectTo.href,
+      },
     });
   }
   if (url.pathname.startsWith('/drafts/')) {
@@ -52,7 +50,6 @@ const handleRequest = async (request, env, ctx) => {
     },
   });
 
-
   resp = new Response(resp.body, resp);
   if (resp.status === 301 && strippedQS) {
     const location = resp.headers.get('location');
@@ -67,27 +64,23 @@ const handleRequest = async (request, env, ctx) => {
 
 class LogHandler {
   async element(element) {
-
     await loadData('https://dynamic-menu-api.h-minst.workers.dev').then((data) => {
-    for (var key in data) {
-        let elem = `<div class="${key}">${JSON.stringify(data[key])}</div>`
-        console.log(elem)
-        element.append(elem, {html:true})
+      for (const key in data) {
+        const elem = `<div class="${key}">${JSON.stringify(data[key])}</div>`;
+        console.log(elem);
+        element.append(elem, { html: true });
       }
-    })
-    console.log(JSON.stringify(element))
+    });
+    console.log(JSON.stringify(element));
   }
 }
 
 export async function loadData(apiUrl) {
-  const response = await fetch(apiUrl)
-  const data = await response.json()
+  const response = await fetch(apiUrl);
+  const data = await response.json();
   return data;
 }
-
 
 export default {
   fetch: handleRequest,
 };
-
-
