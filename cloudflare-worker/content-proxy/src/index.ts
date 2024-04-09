@@ -32,7 +32,6 @@ export default {
 
   class DynamicMenuHandler {
 	async element(element:any) {
-	// who adds -wrapper and the block class???
 	 let menuData = await loadData('https://menu2html.h-minst.workers.dev')
 	 element.before(menuData, {html:true});	 
 	}
