@@ -2,8 +2,8 @@
 Your project's description...
 
 ## Environments
-- Preview: https://main--hlx-spike--hminst.hlx.page/
-- Live: https://main--hlx-spike--hminst.live/
+- Preview: https://main--hlx-mab--hminst.hlx.page/
+- Live: https://main--hlx-mab--hminst.live/
 
 ## Installation
 
