@@ -38,7 +38,7 @@ export default {
 				"x-apikey": apiKey
 			}
 		}).then((data) => {
-			responseBody = loopJson(data)
+			responseBody = `<div class="dynamic-menu">${loopJson(data)}<div>`
 		});
 		return new Response(responseBody);
 	},
@@ -66,13 +66,14 @@ export function loopJson(data) {
 			})
 			continue
 		} else if (key == 'menuCopyDigitalFooter') {
-			footer = `<div class="${key}>${data[key]}</div>`
+			footer = `<p class="${key}>${data[key]}</p>`
+			html += footer
 			continue
 		} else if (key == 'menuCopyFooter') {
 			continue
 		}
 
-		let elem = `<${tag} class="${key}">`
+		let elem = `<${tag} data-property="${key}">`
 		if (typeof data[key] == 'string') {
 			elem += `${(data[key])}`
 		}
@@ -83,7 +84,7 @@ export function loopJson(data) {
 
 		html += elem
 	}
-	html += footer
+	
 	return html;
 }
 

@@ -1,6 +1,6 @@
 
 export default {
-	async fetch(request, env, ctx) {
+	async fetch(request:Request, env:any, ctx:any) {
 		const apiEndpoint = env.ORIGIN_HOSTNAME;
   
 		const url = new URL(request.url)
@@ -22,23 +22,21 @@ export default {
 		});
 
 
-		let re = await new HTMLRewriter({ html: true }).on('.dynamic-menu', new DynamicMenuHandler()).transform(resp)
-
+		let re = await new HTMLRewriter().on('.dynamic-menu', new DynamicMenuHandler()).transform(resp)
+		re.headers.set("Cache-Control", '120')
 		return re;
 	},
   };
 
   class DynamicMenuHandler {
-	async element(element) {
-	console.log(element)
+	async element(element:any) {
 	// who adds -wrapper and the block class???
 	 let menuData = await loadData('https://menu2html.h-minst.workers.dev')
-	 element.before(menuData, {html:true});
-	 
+	 element.before(menuData, {html:true});	 
 	}
   }
 
-  export async function loadData(apiUrl) {
+  export async function loadData(apiUrl:string) {
 	const response = await fetch(apiUrl);
 	const data = await response.text();
 	return data;
