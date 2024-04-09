@@ -1,0 +1,63 @@
+[data-property="menuId"] {
+    display: none;
+}
+
+[data-property="guestFacingDescriptionDigital"] {
+    display: none;
+}
+
+[data-property="lastModified"] {
+    display: none;
+}
+
+[data-property="displayOrder"] {
+    display: none;
+}
+
+[data-property="sectionId"] {
+    display: none;
+}
+
+[data-property="portionId"] {
+    display: none;
+}
+
+[data-property="nutrition"] {
+    width: 500px;
+    border: 1px solid black;
+    overflow: hidden; 
+    > div {
+        width: 50px;
+        float: left;
+    }
+    > .nutitional_headline {
+        width: 150px;
+    }
+}
+
+[data-property="allergens"] {
+    width: 500px;
+    border: 1px solid black;
+    overflow: hidden; 
+    > div {
+        width: 100px;
+        float: left;
+    }
+   
+}
+
+[data-property="menuItems"] {
+    & [data-property="name"] {
+        line-height: 10;
+    }
+}
+[data-property="choiceId"] {
+    display: none;
+}
+[data-property="menuItemId"] {
+    display: none;
+}
+
+.dynamic-menu img {
+    height: 50px
+}
