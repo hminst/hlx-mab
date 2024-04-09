@@ -25,8 +25,6 @@ export interface Env {
 	// MY_QUEUE: Queue;
 }
 
-import json2html from 'node-json2html'
-
 export default {
 
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
