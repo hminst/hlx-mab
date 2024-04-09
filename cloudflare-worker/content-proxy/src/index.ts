@@ -1,6 +1,8 @@
 
 export default {
+
 	async fetch(request:Request, env:any, ctx:any) {
+
 		const apiEndpoint = env.ORIGIN_HOSTNAME;
   
 		const url = new URL(request.url)

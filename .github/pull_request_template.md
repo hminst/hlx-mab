@@ -3,5 +3,5 @@ Please always provide the [GitHub issue(s)](../issues) your PR is for, as well a
 Fix #<gh-issue-id>
 
 Test URLs:
-- Before: https://main--hlx-spike--hminst.hlx.page/
-- After: https://<branch>--hlx-spike--hminst.hlx.page/
+- Before: https://main--hlx-mab--hminst.hlx.page/
+- After: https://<branch>--hlx-mab--hminst.hlx.page/
