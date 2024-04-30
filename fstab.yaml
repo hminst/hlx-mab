@@ -1,5 +1,2 @@
 mountpoints:
-  /:
-    url: "https://author-p23458-e585661.adobeaemcloud.com/bin/franklin.delivery/hminst/hlx-mab/main"
-    type: "markup"
-    suffix: ".html?wcmmode=disabled"
+  /: https://drive.google.com/drive/folders/1uEQ5ktJOx62bLiQ9kWFo8RL7mmkmZ23c
